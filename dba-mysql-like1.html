@@ -57,50 +57,40 @@
 </header>
 
     <article class="post">
-  <div class="post-title">
-    <h2 class="title">Pay</h2>
-  </div>
-   <div class="post-meta">
-    <span class="post-time"></span>
-  </div>
-  <div class="post-content">
-    <p>喜欢我的文章，可以自愿付费购买。</p>
-
-  </div>
-  <div class="NIE-qrcode float">
-        <a href="javascript:;" class="line"></a>
-        <img src="/img/pay/vx.jpg">
+    <div class="post-title">
+        <h2 class="title" style="font-size: 20px;">
+            在mysql中设置utf8_bin下 like搜索 不区分大小写
+        </h2>
     </div>
-    <div class="NIE-qrcode float" style="margin-left: 15px;">
-        <a href="javascript:;" class="line"></a>
-        <img src="/img/pay/zfb.jpg">
-    </div>
-    <div class="clear"></div>
+    <div class="post-content">
+        <p>我们在设计mysql数据库的时候，如果设置为 utf8_bin的时候<br>数据库的英文是要区分大小写的，但是我们在查询的时候，<br>并不想区分大小写，这个时候需要加上一个设定</p>
+<p>collate <code>utf8_unicode_ci</code>。</p>
+<p>综合而言：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">select</span> `id`,`city` <span class="keyword">from</span> `active` <span class="keyword">where</span> `city` <span class="keyword">like</span> <span class="string">&#x27;shanghai&#x27;</span> <span class="keyword">collate</span>  `utf8_unicode_ci` <span class="keyword">order</span> <span class="keyword">by</span> `create_time` limit <span class="number">0</span>,<span class="number">10</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<p>原文</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hayi123/article/details/52330564">https://blog.csdn.net/hayi123/article/details/52330564</a></p>
+
+    </div>
+    <div class="post-meta">
+        <span class="post-time">
+            2020/04
+        </span>
+    </div>
 </article>
 
-
 <style>
-.float{
-    float: left;
-}
-.clear{
-    clear:both;
-}
-.NIE-qrcode {
-    /*position: absolute;*/
-    left: 13px;
-/*    width: 150px;
-    height: 150px;*/
-    padding: 9px;
-    border: 1px solid #c9cfd7;
-}
-.NIE-qrcode img {
-    width: 150px;
-    height: 150px;
-    display: block;
-}
+    .post-time {
+        font-size: 14px;
+        color: #777;
+    }
 </style>
+
+
+<link rel="stylesheet" href="/css/shCoreEclipse.css">
+
+
+
     <footer class="mod-footer" role="contentinfo" id="footer_in">
     <p class="f_bq" style="text-align: center;"><span id='tellu'><span></p>
     <p class="f_bq" style="text-align: center;">

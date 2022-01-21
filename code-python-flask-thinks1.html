@@ -57,50 +57,61 @@
 </header>
 
     <article class="post">
-  <div class="post-title">
-    <h2 class="title">Pay</h2>
-  </div>
-   <div class="post-meta">
-    <span class="post-time"></span>
-  </div>
-  <div class="post-content">
-    <p>喜欢我的文章，可以自愿付费购买。</p>
-
-  </div>
-  <div class="NIE-qrcode float">
-        <a href="javascript:;" class="line"></a>
-        <img src="/img/pay/vx.jpg">
+    <div class="post-title">
+        <h2 class="title" style="font-size: 20px;">
+            从Flask谈主流语言Web延伸
+        </h2>
     </div>
-    <div class="NIE-qrcode float" style="margin-left: 15px;">
-        <a href="javascript:;" class="line"></a>
-        <img src="/img/pay/zfb.jpg">
-    </div>
-    <div class="clear"></div>
+    <div class="post-content">
+        <ul>
+<li>Html5：Vue、AngularJs、React、Webpack</li>
+<li>Python：Django、Tornado、Flask、Twisted</li>
+<li>PHP：ThinkPHP、Lravel</li>
+<li>Java：Springboot</li>
+<li>Go：Golf</li>
+<li>Ruby：Ruby on Rails</li>
+<li>Sql：Mysql、Mongodb、Redis、Elasticsearch、Sqlite3</li>
+</ul>
+<p>最近写了很熟的Flask，对web有些见解</p>
+<ul>
+<li>传参：Json</li>
+<li>持久化：Token、Session</li>
+<li>路由：单文件路由转发实现类</li>
+<li>变量周期 ：全局变量g，全局配置变量current_app</li>
+<li>请求对象：request接收的参数用一个类转化</li>
+<li>nginx反代：需要配置nginx header来获取ip</li>
+<li>采集转接口：flask支持gevent，requests配合re、xpath、bs4、pyquery</li>
+<li>dba：sqlite3连接池写在current_app会加速读取，mysql暂未测试</li>
+<li>接口缓存：参数缓存很有效</li>
+<li>跨域：协调工作时，后台response header跨域 </li>
+<li>日志：日志分析很有用</li>
+<li>付款：注意付款余额小数</li>
+<li>测试类：注意单元测试</li>
+<li>规范：命名规范、代码风格Restful规范</li>
+<li>重构：设计模式、简约</li>
+</ul>
+<p>so，无论是哪个web框架，基本原理相似，学习路径类似</p>
 
+    </div>
+    <div class="post-meta">
+        <span class="post-time">
+            2018/09
+        </span>
+    </div>
 </article>
 
-
 <style>
-.float{
-    float: left;
-}
-.clear{
-    clear:both;
-}
-.NIE-qrcode {
-    /*position: absolute;*/
-    left: 13px;
-/*    width: 150px;
-    height: 150px;*/
-    padding: 9px;
-    border: 1px solid #c9cfd7;
-}
-.NIE-qrcode img {
-    width: 150px;
-    height: 150px;
-    display: block;
-}
+    .post-time {
+        font-size: 14px;
+        color: #777;
+    }
 </style>
+
+
+<link rel="stylesheet" href="/css/shCoreEclipse.css">
+
+
+
     <footer class="mod-footer" role="contentinfo" id="footer_in">
     <p class="f_bq" style="text-align: center;"><span id='tellu'><span></p>
     <p class="f_bq" style="text-align: center;">

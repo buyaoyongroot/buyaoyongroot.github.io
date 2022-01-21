@@ -57,50 +57,33 @@
 </header>
 
     <article class="post">
-  <div class="post-title">
-    <h2 class="title">Pay</h2>
-  </div>
-   <div class="post-meta">
-    <span class="post-time"></span>
-  </div>
-  <div class="post-content">
-    <p>喜欢我的文章，可以自愿付费购买。</p>
-
-  </div>
-  <div class="NIE-qrcode float">
-        <a href="javascript:;" class="line"></a>
-        <img src="/img/pay/vx.jpg">
+    <div class="post-title">
+        <h2 class="title" style="font-size: 20px;">
+            Ali源安装docker
+        </h2>
     </div>
-    <div class="NIE-qrcode float" style="margin-left: 15px;">
-        <a href="javascript:;" class="line"></a>
-        <img src="/img/pay/zfb.jpg">
+    <div class="post-content">
+        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br><span class="line">curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br><span class="line"></span><br><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">yum install -y wget vim iputils-ping net-tools psmisc nmap-ncat.x86_64 tcpdump telnet lrzsz unzip zip</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line"></span><br><span class="line">sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line">sudo yum makecache fast</span><br><span class="line">sudo yum -y install docker-ce</span><br><span class="line"></span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl enable docker</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://fzhifedh.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">EOF</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br><span class="line"></span><br><span class="line">docker pull</span><br></pre></td></tr></table></figure>
     </div>
-    <div class="clear"></div>
-
+    <div class="post-meta">
+        <span class="post-time">
+            2020/10
+        </span>
+    </div>
 </article>
 
-
 <style>
-.float{
-    float: left;
-}
-.clear{
-    clear:both;
-}
-.NIE-qrcode {
-    /*position: absolute;*/
-    left: 13px;
-/*    width: 150px;
-    height: 150px;*/
-    padding: 9px;
-    border: 1px solid #c9cfd7;
-}
-.NIE-qrcode img {
-    width: 150px;
-    height: 150px;
-    display: block;
-}
+    .post-time {
+        font-size: 14px;
+        color: #777;
+    }
 </style>
+
+
+<link rel="stylesheet" href="/css/shCoreEclipse.css">
+
+
+
     <footer class="mod-footer" role="contentinfo" id="footer_in">
     <p class="f_bq" style="text-align: center;"><span id='tellu'><span></p>
     <p class="f_bq" style="text-align: center;">

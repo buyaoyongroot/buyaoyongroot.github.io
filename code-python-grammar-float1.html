@@ -57,50 +57,35 @@
 </header>
 
     <article class="post">
-  <div class="post-title">
-    <h2 class="title">Pay</h2>
-  </div>
-   <div class="post-meta">
-    <span class="post-time"></span>
-  </div>
-  <div class="post-content">
-    <p>喜欢我的文章，可以自愿付费购买。</p>
-
-  </div>
-  <div class="NIE-qrcode float">
-        <a href="javascript:;" class="line"></a>
-        <img src="/img/pay/vx.jpg">
+    <div class="post-title">
+        <h2 class="title" style="font-size: 20px;">
+            Python Float浮点精度注意
+        </h2>
     </div>
-    <div class="NIE-qrcode float" style="margin-left: 15px;">
-        <a href="javascript:;" class="line"></a>
-        <img src="/img/pay/zfb.jpg">
-    </div>
-    <div class="clear"></div>
+    <div class="post-content">
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a=<span class="number">0.1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b=<span class="number">0.2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a+<span class="number">2</span></span><br><span class="line"><span class="number">2.1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a+b</span><br><span class="line"><span class="number">0.30000000000000004</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a+b</span><br><span class="line"><span class="number">0.30000000000000004</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a+b</span><br><span class="line"><span class="number">0.30000000000000004</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span>(<span class="built_in">type</span>(a))</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> &#x27;<span class="title">float</span>&#x27;&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">print</span>(<span class="params"><span class="built_in">type</span>(<span class="params">b</span>)</span>)</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> &#x27;<span class="title">float</span>&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最后有个4是因为浮点精度</p>
 
+    </div>
+    <div class="post-meta">
+        <span class="post-time">
+            2018/12
+        </span>
+    </div>
 </article>
 
-
 <style>
-.float{
-    float: left;
-}
-.clear{
-    clear:both;
-}
-.NIE-qrcode {
-    /*position: absolute;*/
-    left: 13px;
-/*    width: 150px;
-    height: 150px;*/
-    padding: 9px;
-    border: 1px solid #c9cfd7;
-}
-.NIE-qrcode img {
-    width: 150px;
-    height: 150px;
-    display: block;
-}
+    .post-time {
+        font-size: 14px;
+        color: #777;
+    }
 </style>
+
+
+<link rel="stylesheet" href="/css/shCoreEclipse.css">
+
+
+
     <footer class="mod-footer" role="contentinfo" id="footer_in">
     <p class="f_bq" style="text-align: center;"><span id='tellu'><span></p>
     <p class="f_bq" style="text-align: center;">

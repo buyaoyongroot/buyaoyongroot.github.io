@@ -57,50 +57,35 @@
 </header>
 
     <article class="post">
-  <div class="post-title">
-    <h2 class="title">Pay</h2>
-  </div>
-   <div class="post-meta">
-    <span class="post-time"></span>
-  </div>
-  <div class="post-content">
-    <p>喜欢我的文章，可以自愿付费购买。</p>
-
-  </div>
-  <div class="NIE-qrcode float">
-        <a href="javascript:;" class="line"></a>
-        <img src="/img/pay/vx.jpg">
+    <div class="post-title">
+        <h2 class="title" style="font-size: 20px;">
+            linux web高并发优化
+        </h2>
     </div>
-    <div class="NIE-qrcode float" style="margin-left: 15px;">
-        <a href="javascript:;" class="line"></a>
-        <img src="/img/pay/zfb.jpg">
-    </div>
-    <div class="clear"></div>
+    <div class="post-content">
+        <p>朋友和我说，php如何做到8核16G内存达到百万tcp链接<br>其实原理很简单，linux下修改ulimit为65535，开5个php，用nginx做负载均衡<br>那么其实是ulimit影响了，所以Python web下同理<br>就去查了一下<br>内核参数默认值一般是128（定义了系统中每一个端口最大的监听队列的长度）</p>
+<p>参考<br><a target="_blank" rel="noopener" href="https://www.centos.bz/2018/06/flask-%E8%BF%90%E8%A1%8C%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/">Flask 运行性能调优</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012386386/article/details/78921304">inux 修改内核tcp参数，优化服务端高并发请求</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011644231/article/details/88880229">性能调优ulimit增加TCP连接数最大限制</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaoyaojinzhazhadehangcheng/articles/8696954.html">linux内核优化（百万级别长连接，并发测试指南）</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/fgf00/article/details/77544325">linux 调优 Linux内核参数详解</a></p>
 
+    </div>
+    <div class="post-meta">
+        <span class="post-time">
+            2019/09
+        </span>
+    </div>
 </article>
 
-
 <style>
-.float{
-    float: left;
-}
-.clear{
-    clear:both;
-}
-.NIE-qrcode {
-    /*position: absolute;*/
-    left: 13px;
-/*    width: 150px;
-    height: 150px;*/
-    padding: 9px;
-    border: 1px solid #c9cfd7;
-}
-.NIE-qrcode img {
-    width: 150px;
-    height: 150px;
-    display: block;
-}
+    .post-time {
+        font-size: 14px;
+        color: #777;
+    }
 </style>
+
+
+<link rel="stylesheet" href="/css/shCoreEclipse.css">
+
+
+
     <footer class="mod-footer" role="contentinfo" id="footer_in">
     <p class="f_bq" style="text-align: center;"><span id='tellu'><span></p>
     <p class="f_bq" style="text-align: center;">

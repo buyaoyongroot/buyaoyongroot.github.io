@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="/img/favicon.ico">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta property="og:description" name='description' content="可乐博客" />
+    <title>可乐博客</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+    <header class="mod-head">
+    <h1 class="mod-head__title"></h1>
+    <div class="mod-head__logo">
+        <a>
+            <img class="avatar" src="/img/ilogo.png" alt="" width="26" height="26">
+        </a>
+    </div>
+
+    <nav class="mod-head__nav">
+        <ul id="menu" class="mod-head__ul">
+            
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/">
+                        Home
+                    </a>
+                    <span>·</span>
+                </li>
+                
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/share">
+                        Share
+                    </a>
+                    <span>·</span>
+                </li>
+                
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/pay">
+                        Pay
+                    </a>
+                    <span>·</span>
+                </li>
+                
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/link">
+                        Link
+                    </a>
+                    <span>·</span>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+
+    <article class="post">
+    <div class="post-title">
+        <h2 class="title" style="font-size: 20px;">
+            Centos7下 Python3.7安装与Pyinstaller打包
+        </h2>
+    </div>
+    <div class="post-content">
+        <p>一般直接安装与打包是不成功的，所以记录一下</p>
+<p>注释指令的请在谷歌后尝试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">#yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</span><br><span class="line">#yum search python3 | grep devel </span><br><span class="line">#yum install -y python3-devel.x86_64</span><br><span class="line"></span><br><span class="line">#安装centos7开发工具包</span><br><span class="line">yum -y groupinstall &quot;Development tools&quot;</span><br><span class="line">#安装python需要的一些必要库、常用、可能会用到的库</span><br><span class="line">yum install -y lrzsz wget curl gcc make openssl openssl-devel openssl-static bzip2 bzip2-devel zlib-devel ncurses ncurses-devel readline readline-devel xz lzma xz-devel sqlite sqlite-devel gdbm gdbm-devel expat-devel tk tk-devel tcl tcl-devel libffi libffi-devel libpcap-devel</span><br><span class="line"></span><br><span class="line">#tar xzf Python-3.7.4.tgz -C /tmp</span><br><span class="line">#tar xzf Python-3.7.4.tgz</span><br><span class="line">#在下面这个网站下了一个python37-devel 3.7的rc1版本 其他版本自测</span><br><span class="line">#wget http://macports.mirror.ac.za/distfiles/python37-devel/Python-3.7.0rc1.tar.xz</span><br><span class="line">#解压后可以删除压缩包，建议留一个</span><br><span class="line">tar -xvf Python-3.7.0rc1.tar.xz</span><br><span class="line">#rm -f Python-3.7.4.tgz</span><br><span class="line">cd Python-3.7.0rc1</span><br><span class="line"></span><br><span class="line">#几种不同的配置，--enable-shared是必要的，可以把devel里面的库拷贝到python lib文件夹里面。--enable-optimizations是优化python代码的，怎么优化的自己谷歌</span><br><span class="line">#./configure --prefix=/usr/local/python-3.7.0</span><br><span class="line">#./configure --enable-shared --prefix=/usr/local/python-3.7.0</span><br><span class="line">./configure --enable-shared --enable-optimizations --prefix=/usr/local/python-3.7.0</span><br><span class="line">#./configure --enable-shared --enable-optimizations --without-ensurepip --prefix=/usr/local/python3.7.0</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line">#这两个有区别 选一种就可以</span><br><span class="line">#make altinstall</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line">#如果pip坏了就重新安装</span><br><span class="line">#wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">#/usr/local/python3.7.0/bin/python3.7 get-pip.py</span><br><span class="line"></span><br><span class="line">#把python3.7-devel库拷贝到系统库，不然python打不开，pyinstaller编译不了</span><br><span class="line">cp /usr/local/python-3.7.0/lib/libpython3.7m.so.1.0 /usr/lib64</span><br><span class="line"></span><br><span class="line">#pip换清华源，pip能快很多</span><br><span class="line">#~/.pip/pip.conf</span><br><span class="line">mkdir -p ~/.php/</span><br><span class="line">cat&gt;~/.pip/pip.conf&lt;&lt;EOF</span><br><span class="line">[global]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">EOF</span><br><span class="line">#升级pip，给python加个快捷方式，以后在任意位置直接python3和pip就好使</span><br><span class="line">/usr/local/python-3.7.0/bin/pip3.7 install --upgrade pip</span><br><span class="line">ln -s /usr/local/python-3.7.0/bin/python3.7 /usr/bin/python3</span><br><span class="line">ln -s /usr/local/python-3.7.0/bin/pip /usr/bin/pip</span><br><span class="line"></span><br><span class="line">#其实这里就可以虚拟环境了</span><br><span class="line">#pip install pyenv</span><br><span class="line"></span><br><span class="line">#pip就可以正常使了</span><br><span class="line">pip install aiofiles</span><br><span class="line">pip install aiohttp</span><br><span class="line">pip install tqdm</span><br><span class="line"></span><br><span class="line">#pip 安装 pyinstaller，设置软路由</span><br><span class="line">pip install pyinstaller</span><br><span class="line">ln -s /usr/local/python-3.7.0/bin/pyinstaller /usr/bin/pyinstaller</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>参考网站</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/295d71ff7d0b">Centos7安装python3.7及PyInstaller打包</a></p>
+
+    </div>
+    <div class="post-meta">
+        <span class="post-time">
+            2019/09
+        </span>
+    </div>
+</article>
+
+<style>
+    .post-time {
+        font-size: 14px;
+        color: #777;
+    }
+</style>
+
+
+<link rel="stylesheet" href="/css/shCoreEclipse.css">
+
+
+
+    <footer class="mod-footer" role="contentinfo" id="footer_in">
+    <p class="f_bq" style="text-align: center;"><span id='tellu'><span></p>
+    <p class="f_bq" style="text-align: center;">
+        <a class="banquan" target="_blank" href="https://hexo.io/">Hexo</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="/">Themes</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="https://pages.github.com">Github Pages</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="/sitemap.xml">Sitemap</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="/baidusitemap.xml" hidden>BaiduSitemap></a>
+        Copyright &copy;2022 <a class="banquan" target="_blank" href="mailto:kele@masong.me">KELE</a>
+    </p>
+</footer>
+
+
+    <a href="https://github.com/buyaoyongroot" class="github-corner" target="_blank" title="Follow me on GitHub">
+    <svg width="60" height="60" viewBox="0 0 250 250"
+        style="fill:#151513; color:#fff; z-index: 999999; position: fixed; top: 0; border: 0; left: 0; transform: scale(-1, 1);"
+        aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path
+            d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+            fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path
+            d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+            fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+
+
+    
+<script src="/js/scrollbar.js"></script>
+
+    
+<script src="/js/tellu.js"></script>
+
+</body>
+
+</html>

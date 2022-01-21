@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="/img/favicon.ico">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta property="og:description" name='description' content="可乐博客" />
+    <title>可乐博客</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+    <header class="mod-head">
+    <h1 class="mod-head__title"></h1>
+    <div class="mod-head__logo">
+        <a>
+            <img class="avatar" src="/img/ilogo.png" alt="" width="26" height="26">
+        </a>
+    </div>
+
+    <nav class="mod-head__nav">
+        <ul id="menu" class="mod-head__ul">
+            
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/">
+                        Home
+                    </a>
+                    <span>·</span>
+                </li>
+                
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/share">
+                        Share
+                    </a>
+                    <span>·</span>
+                </li>
+                
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/pay">
+                        Pay
+                    </a>
+                    <span>·</span>
+                </li>
+                
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/link">
+                        Link
+                    </a>
+                    <span>·</span>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+
+    <article class="post">
+    <div class="post-title">
+        <h2 class="title" style="font-size: 20px;">
+            Python高并发小记
+        </h2>
+    </div>
+    <div class="post-content">
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python3</span></span><br><span class="line"><span class="comment"># make:v0.0.1,Kele,2018-11-29 19:46:17 email:kele@masong.me</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># python高并发三种实现方式 多线程、多进程、异步</span></span><br><span class="line"><span class="comment"># 由于python只运行在单进程内 所以可以在多进程内开多线程</span></span><br><span class="line"><span class="comment"># 多进程一般为cpu数，多线程一般为20+ 异步数800+</span></span><br><span class="line"><span class="comment"># 在并发时，注意常量、锁、队列</span></span><br><span class="line"><span class="comment"># 队列 先进先出、可以将1万个url放在队列里 在任意子线程/子进程/子异步函数get</span></span><br><span class="line"><span class="comment"># 常量 在任意子线程/子进程/子异步函数共享的常量值</span></span><br><span class="line"><span class="comment"># 锁 加锁解锁防止同一时间的干扰</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 原理</span></span><br><span class="line"><span class="comment"># 函数A(参数a)</span></span><br><span class="line"><span class="comment"># 参数集合Lists</span></span><br><span class="line"><span class="comment"># 并发池(函数A名称,参数集合Lists,并发数20)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 难点</span></span><br><span class="line"><span class="comment"># 在于数据的控制、分发、合并</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 技巧</span></span><br><span class="line"><span class="comment"># 利用线程池、进程池、异步池</span></span><br><span class="line"><span class="comment"># 有些时候 为了防止可能会频繁创建销毁时 在每个子函数中写while 1 </span></span><br><span class="line"><span class="comment"># 上述技巧难点在于全局控制销毁 可以用os._exit(0)结束</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 例子</span></span><br><span class="line"><span class="comment"># 爬虫的难点在于高并发与反爬虫机制</span></span><br><span class="line"><span class="comment"># so 高并发时假设url数量大于10万时 可以存在数据库加一个state值进行updata</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 快速构建爬虫框架</span></span><br><span class="line"><span class="comment"># 入口函数-&gt;参数构造器-&gt;文件缓存区-&gt;http请求器-&gt;编码处理器-&gt;文本处理器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#线程池</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pool</span>(<span class="params">callback, lists,threadNum=<span class="number">10</span></span>):</span></span><br><span class="line">    <span class="keyword">import</span> threadpool         </span><br><span class="line">    pool = threadpool.ThreadPool(threadNum) </span><br><span class="line">    requests = threadpool.makeRequests(callback, lists) </span><br><span class="line">    [pool.putRequest(req) <span class="keyword">for</span> req <span class="keyword">in</span> requests] </span><br><span class="line">    pool.wait()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bPool</span>(<span class="params">arg</span>):</span></span><br><span class="line">    <span class="keyword">from</span> multiprocessing.dummy <span class="keyword">import</span> Pool <span class="keyword">as</span> ThreadPool <span class="comment"># 线程池</span></span><br><span class="line">    tpool = ThreadPool(arg[<span class="string">&#x27;tnum&#x27;</span>])</span><br><span class="line">    arr=<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> i:&#123;<span class="string">&#x27;cnum&#x27;</span>:arg[<span class="string">&#x27;cnum&#x27;</span>],<span class="string">&#x27;tnum&#x27;</span>:i,<span class="string">&#x27;arg&#x27;</span>:arg[<span class="string">&#x27;arg&#x27;</span>]&#125;,<span class="built_in">range</span>(arg[<span class="string">&#x27;tnum&#x27;</span>])))</span><br><span class="line">    tpool.<span class="built_in">map</span>(arg[<span class="string">&#x27;callback&#x27;</span>], arr)</span><br><span class="line">    tpool.close()  </span><br><span class="line">    tpool.join() </span><br><span class="line"></span><br><span class="line"><span class="comment">#进程池</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sPool</span>(<span class="params">callback,tnum=<span class="number">20</span>,cnum=<span class="string">&#x27;&#x27;</span>,arg=[]</span>):</span></span><br><span class="line">    <span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool <span class="keyword">as</span> ProcessPool <span class="comment"># 进程池</span></span><br><span class="line">    <span class="keyword">from</span> multiprocessing <span class="keyword">import</span> cpu_count <span class="comment">#cpu数量</span></span><br><span class="line">    <span class="keyword">if</span> cnum==<span class="string">&#x27;&#x27;</span>:</span><br><span class="line">        spool = ProcessPool(cpu_count())</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        spool = ProcessPool(cnum)</span><br><span class="line">    arr=<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> i:&#123;<span class="string">&#x27;cnum&#x27;</span>:i,<span class="string">&#x27;tnum&#x27;</span>:tnum,<span class="string">&#x27;callback&#x27;</span>:callback,<span class="string">&#x27;arg&#x27;</span>:arg&#125;,<span class="built_in">range</span>(cnum)))</span><br><span class="line">    spool.<span class="built_in">map</span>(bPool, arr)</span><br><span class="line">    spool.close()  </span><br><span class="line">    spool.join()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Manager</span>():</span></span><br><span class="line">    <span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Manager</span><br><span class="line">    manager = Manager()</span><br><span class="line">    q = manager.Queue()</span><br><span class="line">    lock = manager.Lock()</span><br><span class="line">    <span class="keyword">return</span> q,lock</span><br><span class="line"></span><br><span class="line"><span class="comment">#gevent协程</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gPool</span>(<span class="params">callback,urls=[],pnum=<span class="number">800</span></span>):</span></span><br><span class="line">    <span class="keyword">from</span> gevent <span class="keyword">import</span> monkey; monkey.patch_all(socket=<span class="literal">True</span>,select=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">from</span> gevent.pool <span class="keyword">import</span> Pool</span><br><span class="line">    gpool = Pool(pnum)</span><br><span class="line">    gpool.<span class="built_in">map</span>(callback, urls)</span><br><span class="line"></span><br><span class="line"><span class="comment">#gevent常量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getGevent</span>():</span></span><br><span class="line">    <span class="keyword">from</span> gevent <span class="keyword">import</span> monkey; monkey.patch_all(socket=<span class="literal">True</span>,select=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">from</span> gevent.queue <span class="keyword">import</span> Queue<span class="comment">#get,put</span></span><br><span class="line">    <span class="keyword">from</span> gevent.local <span class="keyword">import</span> local</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">from</span> gevent.lock <span class="keyword">import</span> BoundedSemaphore</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">from</span> gevent.coros <span class="keyword">import</span> BoundedSemaphore </span><br><span class="line">    sem = BoundedSemaphore(<span class="number">2</span>)<span class="comment">#acquire,release</span></span><br><span class="line">    <span class="keyword">return</span> local,Queue,sem<span class="comment">#返回常量,队列,锁</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gethtml</span>(<span class="params">url</span>):</span></span><br><span class="line">    <span class="keyword">import</span> requests</span><br><span class="line">    <span class="comment"># return len(requests.get(url).text)</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">len</span>(requests.get(url).text))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span>(<span class="params">arg</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;进程序号:&#x27;</span>+<span class="built_in">str</span>(arg[<span class="string">&#x27;cnum&#x27;</span>]),<span class="string">&#x27;线程序号:&#x27;</span>+<span class="built_in">str</span>(arg[<span class="string">&#x27;tnum&#x27;</span>]))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">import</span> warnings</span><br><span class="line">    warnings.filterwarnings(<span class="string">&quot;ignore&quot;</span>)<span class="comment">#忽略警告</span></span><br><span class="line">    url=<span class="string">&#x27;http://www.baidu.com&#x27;</span></span><br><span class="line">    urls=[url <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)]</span><br><span class="line">    <span class="comment">#正常访问一遍</span></span><br><span class="line">    gethtml(url)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;=&#x27;</span>*<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#多线程访问</span></span><br><span class="line">    pool(gethtml,urls,<span class="number">10</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;=&#x27;</span>*<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#多进程访问</span></span><br><span class="line">    <span class="comment"># q,lock = rq.Manager()#队列,锁</span></span><br><span class="line">    <span class="comment"># rq.feed(q,urls)</span></span><br><span class="line">    <span class="comment"># rq.sPool(Downloader,tnum=25,cnum=4,arg=[q,lock])</span></span><br><span class="line">    sPool(hello,tnum=<span class="number">20</span>,cnum=<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#异步访问</span></span><br><span class="line">    <span class="comment">#l,q,s=rq.getGevent()#返回常量,队列,锁</span></span><br><span class="line">    gPool(gethtml,urls,<span class="number">10</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;=&#x27;</span>*<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+    </div>
+    <div class="post-meta">
+        <span class="post-time">
+            2018/12
+        </span>
+    </div>
+</article>
+
+<style>
+    .post-time {
+        font-size: 14px;
+        color: #777;
+    }
+</style>
+
+
+<link rel="stylesheet" href="/css/shCoreEclipse.css">
+
+
+
+    <footer class="mod-footer" role="contentinfo" id="footer_in">
+    <p class="f_bq" style="text-align: center;"><span id='tellu'><span></p>
+    <p class="f_bq" style="text-align: center;">
+        <a class="banquan" target="_blank" href="https://hexo.io/">Hexo</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="/">Themes</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="https://pages.github.com">Github Pages</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="/sitemap.xml">Sitemap</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="/baidusitemap.xml" hidden>BaiduSitemap></a>
+        Copyright &copy;2022 <a class="banquan" target="_blank" href="mailto:kele@masong.me">KELE</a>
+    </p>
+</footer>
+
+
+    <a href="https://github.com/buyaoyongroot" class="github-corner" target="_blank" title="Follow me on GitHub">
+    <svg width="60" height="60" viewBox="0 0 250 250"
+        style="fill:#151513; color:#fff; z-index: 999999; position: fixed; top: 0; border: 0; left: 0; transform: scale(-1, 1);"
+        aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path
+            d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+            fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path
+            d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+            fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+
+
+    
+<script src="/js/scrollbar.js"></script>
+
+    
+<script src="/js/tellu.js"></script>
+
+</body>
+
+</html>

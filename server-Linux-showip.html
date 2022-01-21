@@ -57,50 +57,41 @@
 </header>
 
     <article class="post">
-  <div class="post-title">
-    <h2 class="title">Pay</h2>
-  </div>
-   <div class="post-meta">
-    <span class="post-time"></span>
-  </div>
-  <div class="post-content">
-    <p>喜欢我的文章，可以自愿付费购买。</p>
-
-  </div>
-  <div class="NIE-qrcode float">
-        <a href="javascript:;" class="line"></a>
-        <img src="/img/pay/vx.jpg">
+    <div class="post-title">
+        <h2 class="title" style="font-size: 20px;">
+            CentOS7 配置登录前显示IP
+        </h2>
     </div>
-    <div class="NIE-qrcode float" style="margin-left: 15px;">
-        <a href="javascript:;" class="line"></a>
-        <img src="/img/pay/zfb.jpg">
-    </div>
-    <div class="clear"></div>
+    <div class="post-content">
+        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/issue /etc/issue_standard</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">vim /etc/init.d/show_ip.sh</span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">cp /etc/issue_standard /etc/issue</span><br><span class="line">/usr/sbin/ip addr | grep &quot;inet&quot; |grep -v &quot;inet6&quot; | grep -v &quot;127.0.0.1&quot; | awk &#x27;&#123;print $2&#125;&#x27; &gt;&gt; /etc/issue</span><br><span class="line">echo &quot;&quot; &gt;&gt; /etc/issue</span><br><span class="line"></span><br><span class="line">echo &quot;/etc/init.d/show_ip.sh&quot; &gt;&gt; /etc/rc.local</span><br><span class="line">chmod a+x /etc/init.d/show_ip.sh</span><br><span class="line">chmod a+x /etc/rc.local</span><br></pre></td></tr></table></figure>
 
+<p>一键安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y wget &amp;&amp; wget -O poweron_showip.sh http://masong.me/install/poweron_showip.sh &amp;&amp; sh poweron_showip.sh</span><br></pre></td></tr></table></figure>
+
+
+
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/l---/p/12895145.html">CentOS7 配置登录前显示IP - ~椰子 - 博客园</a></p>
+
+    </div>
+    <div class="post-meta">
+        <span class="post-time">
+            2020/10
+        </span>
+    </div>
 </article>
 
-
 <style>
-.float{
-    float: left;
-}
-.clear{
-    clear:both;
-}
-.NIE-qrcode {
-    /*position: absolute;*/
-    left: 13px;
-/*    width: 150px;
-    height: 150px;*/
-    padding: 9px;
-    border: 1px solid #c9cfd7;
-}
-.NIE-qrcode img {
-    width: 150px;
-    height: 150px;
-    display: block;
-}
+    .post-time {
+        font-size: 14px;
+        color: #777;
+    }
 </style>
+
+
+<link rel="stylesheet" href="/css/shCoreEclipse.css">
+
+
+
     <footer class="mod-footer" role="contentinfo" id="footer_in">
     <p class="f_bq" style="text-align: center;"><span id='tellu'><span></p>
     <p class="f_bq" style="text-align: center;">
