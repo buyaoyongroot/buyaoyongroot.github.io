@@ -56,49 +56,34 @@
     </nav>
 </header>
 
-    <article class="mod-archive">
-
-    <div class="mod-archive__item">
-        <div class="mod-archive__year"><a style="color: #888;">NOTE</a></div>
-
-        <ul class="mod-archive__list">
-            
-                <li>
-                    <div><span class="mod-archive__time" style="padding-right: 15px;">
-                            2022/08
-                        </span>
-                        <a href="/docker-docker-ssh.html" style="text-transform:capitalize">
-                            
-                            虚拟化中使用Docker 解决VNC无法连接到容器
-
-                        </a>
-
-                    </div>
-                </li>
-                
-                <li>
-                    <div><span class="mod-archive__time" style="padding-right: 15px;">
-                            2022/01
-                        </span>
-                        <a href="/hexo-hexo-test1.html" style="text-transform:capitalize">
-                            
-                            Hexo文章测试
-
-                        </a>
-
-                    </div>
-                </li>
-                
-        </ul>
-
-
-
-        
-
+    <article class="post">
+    <div class="post-title">
+        <h2 class="title" style="font-size: 20px;">
+            虚拟化中使用Docker 解决VNC无法连接到容器
+        </h2>
+    </div>
+    <div class="post-content">
+        <p>原因是由于tty引起的，关闭容器内的tty服务即可</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">exec</span> <span class="operator">-</span>it 容器名称 systemctl stop getty<span class="variable">@tty1</span>.service</span><br><span class="line">docker <span class="keyword">exec</span> <span class="operator">-</span>it 容器名称 systemctl mask getty<span class="variable">@tty1</span>.service</span><br></pre></td></tr></table></figure>
 
 
     </div>
+    <div class="post-meta">
+        <span class="post-time">
+            2022/08
+        </span>
+    </div>
 </article>
+
+<style>
+    .post-time {
+        font-size: 14px;
+        color: #777;
+    }
+</style>
+
+
+<link rel="stylesheet" href="/css/shCoreEclipse.css">
 
 
 
