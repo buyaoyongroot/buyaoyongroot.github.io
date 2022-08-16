@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="/img/favicon.ico">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta property="og:description" name='description' content="可乐博客" />
+    <title>可乐博客</title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+    <header class="mod-head">
+    <h1 class="mod-head__title"></h1>
+    <div class="mod-head__logo">
+        <a>
+            <img class="avatar" src="/img/ilogo.png" alt="" width="26" height="26">
+        </a>
+    </div>
+
+    <nav class="mod-head__nav">
+        <ul id="menu" class="mod-head__ul">
+            
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/">
+                        Home
+                    </a>
+                    <span>·</span>
+                </li>
+                
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/share">
+                        Share
+                    </a>
+                    <span>·</span>
+                </li>
+                
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/pay">
+                        Pay
+                    </a>
+                    <span>·</span>
+                </li>
+                
+                <li id="menu-item-14" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14">
+                    <a href="/link">
+                        Link
+                    </a>
+                    <span>·</span>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+
+    <article class="post">
+    <div class="post-title">
+        <h2 class="title" style="font-size: 20px;">
+            Python使用三种方式的线程池
+        </h2>
+    </div>
+    <div class="post-content">
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import time</span><br><span class="line">from requests.packages.urllib3 import disable_warnings</span><br><span class="line"></span><br><span class="line">from concurrent.futures import ThreadPoolExecutor as TPE_POOL   # 线程池的一种实现1</span><br><span class="line">from multiprocessing.dummy import Pool as MPD_POOL              # 线程池的一种实现2</span><br><span class="line">from threadpool import makeRequests, ThreadPool as TTP_POOL     # 线程池的一种实现3</span><br><span class="line"></span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">disable_warnings()</span><br><span class="line"></span><br><span class="line"># URLS = [&#x27;https://www.163.com&#x27;, &#x27;https://www.baidu.com/&#x27;, &#x27;https://www.qq.com/&#x27;]</span><br><span class="line">URLS = [&#x27;http://127.0.0.1&#x27;] * 1000</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    &quot;User-Agent&quot;:</span><br><span class="line">    &quot;Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def exp():</span><br><span class="line">    &#x27;&#x27;&#x27;统计函数执行时间&#x27;&#x27;&#x27;</span><br><span class="line">    def deco(func):</span><br><span class="line">        def wrapper(*arg, **kw):</span><br><span class="line">            import time</span><br><span class="line">            t0 = time.time()</span><br><span class="line">            res = func(*arg, **kw)</span><br><span class="line">            t = time.time() - t0</span><br><span class="line">            t = 0.1 if t == 0.0 else t</span><br><span class="line">            print(&#x27;CALL %s %.4fs&#x27; % (func.__name__, t))</span><br><span class="line">            return res</span><br><span class="line">        return wrapper</span><br><span class="line">    return deco</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class HappyPool:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.ret = []  # 使用类属性的方式，用来回收全部执行结果</span><br><span class="line"></span><br><span class="line">    def _tpe_pool(self, func, datas, max_workers=10):</span><br><span class="line">        pool = TPE_POOL(max_workers=max_workers)</span><br><span class="line">        pool.map(func, datas)</span><br><span class="line">        pool.shutdown(wait=True)  # 等待全部结束</span><br><span class="line"></span><br><span class="line">    def _mpd_pool(self, func, datas, max_workers=10):</span><br><span class="line">        pool = MPD_POOL(max_workers)</span><br><span class="line">        pool.map(func, datas)</span><br><span class="line">        pool.close()</span><br><span class="line">        pool.join()   # 等待全部结束</span><br><span class="line"></span><br><span class="line">    def _ttp_pool(self, func, datas, max_workers=10):</span><br><span class="line">        def _map(func, datas):</span><br><span class="line">            requests = makeRequests(func, datas)</span><br><span class="line">            [pool.putRequest(req) for req in requests]</span><br><span class="line"></span><br><span class="line">        pool = TTP_POOL(max_workers)</span><br><span class="line">        _map(func, datas)</span><br><span class="line">        pool.wait()  # 等待全部结束</span><br><span class="line"></span><br><span class="line">    def get_url(self, url):</span><br><span class="line">        resp = requests.get(url, headers=headers, verify=False, timeout=7, allow_redirects=True)</span><br><span class="line">        tmp = &#123;url: resp&#125;</span><br><span class="line">        self.ret.append(tmp)</span><br><span class="line"></span><br><span class="line">    def start(self, func, urls, max_workers, pool=&#x27;tpe&#x27;):</span><br><span class="line">        if pool == &#x27;tpe&#x27;:  # 使用&lt;concurrent.futures.ThreadPoolExecutor&gt;的线程池</span><br><span class="line">            self._tpe_pool(func, urls, max_workers)</span><br><span class="line"></span><br><span class="line">        if pool == &#x27;mpd&#x27;:  # 使用&lt;multiprocessing.dummy&gt;的线程池</span><br><span class="line">            self._mpd_pool(func, urls, max_workers)</span><br><span class="line"></span><br><span class="line">        if pool == &#x27;ttp&#x27;:  # 使用&lt;multiprocessing.dummy&gt;的线程池</span><br><span class="line">            self._ttp_pool(func, urls, max_workers)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@exp()</span><br><span class="line">def run_tpe_pool():</span><br><span class="line">    obj = HappyPool()</span><br><span class="line">    obj.start(obj.get_url, URLS, 20, pool=&#x27;tpe&#x27;)</span><br><span class="line">    # print(obj.ret)  # 返回值</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@exp()</span><br><span class="line">def run_mpd_pool():</span><br><span class="line">    obj = HappyPool()</span><br><span class="line">    obj.start(obj.get_url, URLS, 20, pool=&#x27;mpd&#x27;)</span><br><span class="line">    # print(obj.ret)  # 返回值</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@exp()</span><br><span class="line">def run_ttp_pool():</span><br><span class="line">    obj = HappyPool()</span><br><span class="line">    obj.start(obj.get_url, URLS, 20, pool=&#x27;ttp&#x27;)</span><br><span class="line">    # print(obj.ret)  # 返回值</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    # pass</span><br><span class="line">    run_tpe_pool()  # 3.66秒</span><br><span class="line">    run_mpd_pool()   # 3.65秒</span><br><span class="line">    run_ttp_pool()   # 3.86秒</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    </div>
+    <div class="post-meta">
+        <span class="post-time">
+            2022/08
+        </span>
+    </div>
+</article>
+
+<style>
+    .post-time {
+        font-size: 14px;
+        color: #777;
+    }
+</style>
+
+
+<link rel="stylesheet" href="/css/shCoreEclipse.css">
+
+
+
+    <footer class="mod-footer" role="contentinfo" id="footer_in">
+    <p class="f_bq" style="text-align: center;"><span id='tellu'><span></p>
+    <p class="f_bq" style="text-align: center;">
+        <a class="banquan" target="_blank" href="https://hexo.io/">Hexo</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="/">Themes</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="https://pages.github.com">Github Pages</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="/sitemap.xml">Sitemap</a>
+        <a style="margin-left: 8px;margin-right: 5px;">·</a>
+        <a class="banquan" target="_blank" href="/baidusitemap.xml" hidden>BaiduSitemap></a>
+        Copyright &copy;2022 <a class="banquan" target="_blank" href="mailto:kele@masong.me">KELE</a>
+    </p>
+</footer>
+
+
+    <a href="https://github.com/buyaoyongroot" class="github-corner" target="_blank" title="Follow me on GitHub">
+    <svg width="60" height="60" viewBox="0 0 250 250"
+        style="fill:#151513; color:#fff; z-index: 999999; position: fixed; top: 0; border: 0; left: 0; transform: scale(-1, 1);"
+        aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path
+            d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+            fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path
+            d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+            fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+
+
+    
+<script src="/js/scrollbar.js"></script>
+
+    
+<script src="/js/tellu.js"></script>
+
+</body>
+
+</html>
