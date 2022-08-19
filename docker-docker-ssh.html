@@ -64,6 +64,9 @@
     </div>
     <div class="post-content">
         <p>原因是由于tty引起的，关闭容器内的tty服务即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -q | xargs docker inspect --format <span class="string">&#x27;&#123;&#123;.State.Pid&#125;&#125;, &#123;&#123;.Name&#125;&#125;&#x27;</span> | grep $(ps -ef|grep 28209 |grep -v grep |awk <span class="string">&#x27;&#123;print $3&#125;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">exec</span> <span class="operator">-</span>it 容器名称 systemctl stop getty<span class="variable">@tty1</span>.service</span><br><span class="line">docker <span class="keyword">exec</span> <span class="operator">-</span>it 容器名称 systemctl mask getty<span class="variable">@tty1</span>.service</span><br></pre></td></tr></table></figure>
 
 
