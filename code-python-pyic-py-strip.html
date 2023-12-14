@@ -59,15 +59,15 @@
     <article class="post">
     <div class="post-title">
         <h2 class="title" style="font-size: 20px;">
-            async 多进程小记
+            Python strip误区
         </h2>
     </div>
     <div class="post-content">
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> concurrent.futures</span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="built_in">print</span>(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    p = concurrent.futures.ProcessPoolExecutor()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">        obj = p.submit(get, i)</span><br><span class="line">        fut = asyncio.wrap_future(obj)</span><br><span class="line">        <span class="comment"># await asyncio.sleep(1)</span></span><br><span class="line">        <span class="keyword">await</span> fut</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    asyncio.run(main())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">strip使用时，以下方式容易出错</span><br><span class="line"></span><br><span class="line">print(&quot;Base_a123&quot;.strip(&#x27;Base_&#x27;))</span><br><span class="line"></span><br><span class="line">正确输出为 123 </span><br><span class="line"></span><br><span class="line">以上需求应该使用replace替换</span><br><span class="line">print(&quot;Base_a123&quot;.replace(&#x27;Base_&#x27;, &#x27;&#x27;))</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
     </div>
     <div class="post-meta">
         <span class="post-time">
-            2019/08
+            2023/12
         </span>
     </div>
 </article>
