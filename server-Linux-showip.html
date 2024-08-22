@@ -66,7 +66,7 @@
         <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/issue /etc/issue_standard</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">vim /etc/init.d/show_ip.sh</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">cp /etc/issue_standard /etc/issue</span><br><span class="line">/usr/sbin/ip addr | grep &quot;inet&quot; |grep -v &quot;inet6&quot; | grep -v &quot;127.0.0.1&quot; | awk &#x27;&#123;print $2&#125;&#x27; &gt;&gt; /etc/issue</span><br><span class="line">echo &quot;&quot; &gt;&gt; /etc/issue</span><br><span class="line"></span><br><span class="line">echo &quot;/etc/init.d/show_ip.sh&quot; &gt;&gt; /etc/rc.local</span><br><span class="line">chmod a+x /etc/init.d/show_ip.sh</span><br><span class="line">chmod a+x /etc/rc.local</span><br></pre></td></tr></table></figure>
 
 <p>一键安装</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y wget &amp;&amp; wget -O poweron_showip.sh http://masong.me/install/poweron_showip.sh &amp;&amp; sh poweron_showip.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y wget &amp;&amp; wget -O poweron_showip.sh http://xxx/install/poweron_showip.sh &amp;&amp; sh poweron_showip.sh</span><br></pre></td></tr></table></figure>
 
 
 
@@ -104,10 +104,9 @@
         <a class="banquan" target="_blank" href="/sitemap.xml">Sitemap</a>
         <a style="margin-left: 8px;margin-right: 5px;">·</a>
         <a class="banquan" target="_blank" href="/baidusitemap.xml" hidden>BaiduSitemap></a>
-        Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a class="banquan" target="_blank" href="mailto:kele@masong.me">KELE</a>
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a class="banquan" target="_blank" href="#">KELE</a>
     </p>
 </footer>
-
 
     <a href="https://github.com/buyaoyongroot" class="github-corner" target="_blank" title="Follow me on GitHub">
     <svg width="60" height="60" viewBox="0 0 250 250"
