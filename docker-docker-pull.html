@@ -56,107 +56,32 @@
     </nav>
 </header>
 
-    <article class="mod-archive">
-
-    <div class="mod-archive__item">
-        <div class="mod-archive__year"><a style="color: #888;">NOTE</a></div>
-
-        <ul class="mod-archive__list">
-            
-                <li>
-                    <div><span class="mod-archive__time" style="padding-right: 15px;">
-                            2018/09
-                        </span>
-                        <a href="/code-python-spider-scrapy1.html" style="text-transform:capitalize">
-                            
-                            仿Scrapy的Python实现
-
-                        </a>
-
-                    </div>
-                </li>
-                
-                <li>
-                    <div><span class="mod-archive__time" style="padding-right: 15px;">
-                            2018/09
-                        </span>
-                        <a href="/code-python-higher-GIL.html" style="text-transform:capitalize">
-                            
-                            谈PythonGIL提升采集速度
-
-                        </a>
-
-                    </div>
-                </li>
-                
-                <li>
-                    <div><span class="mod-archive__time" style="padding-right: 15px;">
-                            2018/09
-                        </span>
-                        <a href="/code-python-grammar-decorator-cache.html" style="text-transform:capitalize">
-                            
-                            Python性能优化技巧：装饰器函数缓存
-
-                        </a>
-
-                    </div>
-                </li>
-                
-                <li>
-                    <div><span class="mod-archive__time" style="padding-right: 15px;">
-                            2018/09
-                        </span>
-                        <a href="/code-python-fleader-thinks1.html" style="text-transform:capitalize">
-                            
-                            谈Fleader设计思想与数据采集
-
-                        </a>
-
-                    </div>
-                </li>
-                
-                <li>
-                    <div><span class="mod-archive__time" style="padding-right: 15px;">
-                            2018/09
-                        </span>
-                        <a href="/code-python-flask-thinks1.html" style="text-transform:capitalize">
-                            
-                            从Flask谈主流语言Web延伸
-
-                        </a>
-
-                    </div>
-                </li>
-                
-                <li>
-                    <div><span class="mod-archive__time" style="padding-right: 15px;">
-                            2018/09
-                        </span>
-                        <a href="/about.html" style="text-transform:capitalize">
-                            
-                                <span style="color:red">[TOP] </span>
-                            
-                            关于博客
-
-                        </a>
-
-                    </div>
-                </li>
-                
-        </ul>
-
-
-
-        
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/page/5/">上一页</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="page-number current">6</span>
-    </nav>
-
-
-
+    <article class="post">
+    <div class="post-title">
+        <h2 class="title" style="font-size: 20px;">
+            解决docker pull失败问题
+        </h2>
+    </div>
+    <div class="post-content">
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">vim  /etc/docker/daemon.json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;registry-mirrors&quot;: [</span><br><span class="line">        &quot;https://do.nark.eu.org&quot;,</span><br><span class="line">        &quot;https://dc.j8.work&quot;,</span><br><span class="line">        &quot;https://docker.m.daocloud.io&quot;,</span><br><span class="line">        &quot;https://dockerproxy.com&quot;,</span><br><span class="line">        &quot;https://docker.mirrors.ustc.edu.cn&quot;,</span><br><span class="line">        &quot;https://docker.nju.edu.cn&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">重启docker</span><br><span class="line">systemctl restart docker</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </div>
+    <div class="post-meta">
+        <span class="post-time">
+            2024/10
+        </span>
+    </div>
 </article>
+
+<style>
+    .post-time {
+        font-size: 14px;
+        color: #777;
+    }
+</style>
+
+
+<link rel="stylesheet" href="/css/shCoreEclipse.css">
 
 
 
